@@ -214,26 +214,88 @@
       letter-spacing: 2px;
     }
 
-    thead th,
-    td {
-      padding: 14px 16px;
+    table {
+      display: block;
     }
 
-    thead th:nth-child(2),
-    thead th:nth-child(3) {
+    thead {
+      display: none;
+    }
+
+    tbody {
+      display: block;
+    }
+
+    tbody tr:not(.divider-row) {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.045);
+      padding: 16px;
+      margin-bottom: 8px;
+      background: rgba(255,255,255,0.01);
+      border-radius: 2px;
+    }
+
+    tbody tr:not(.divider-row):hover {
+      background: rgba(167,139,250,0.06);
+    }
+
+    tbody tr.divider-row {
+      display: block;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.02);
+      border: none;
+      margin: 12px 0 8px 0;
+    }
+
+    tbody tr.divider-row td {
+      padding: 0;
+      border: none;
+    }
+
+    td {
+      padding: 10px 0;
+      display: block;
       text-align: left;
+      border: none;
+      vertical-align: top;
+    }
+
+    tbody tr:not(.divider-row) td:nth-child(2)::before,
+    tbody tr:not(.divider-row) td:nth-child(3)::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    tbody tr:not(.divider-row) td:nth-child(1) {
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 10px;
     }
 
     .rule-name {
       white-space: normal;
+      display: block;
+      margin-top: 4px;
     }
 
     .formula-col {
-      font-size: 14px;
+      font-size: 13px;
+      text-align: left;
     }
 
-    .divider-row td {
-      padding: 10px 16px;
+    .divider-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
     }
 
     .footer {
@@ -270,32 +332,32 @@
 
       <tr>
         <td><div class="rule-badge badge-basic">Básica</div><br><span class="rule-name">Constante</span></td>
-        <td class="formula-col">\( f(x) = k \)</td>
-        <td class="formula-col">\( f'(x) = 0 \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = k \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = 0 \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-basic">Básica</div><br><span class="rule-name">Potência</span></td>
-        <td class="formula-col">\( f(x) = x^n \)</td>
-        <td class="formula-col">\( f'(x) = n\,x^{n-1} \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = x^n \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = n\,x^{n-1} \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-basic">Básica</div><br><span class="rule-name">Mult. por Constante</span></td>
-        <td class="formula-col">\( g(x) = k \cdot f(x) \)</td>
-        <td class="formula-col">\( g'(x) = k \cdot f'(x) \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( g(x) = k \cdot f(x) \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( g'(x) = k \cdot f'(x) \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-basic">Básica</div><br><span class="rule-name">Soma</span></td>
-        <td class="formula-col">\( f(x) = u(x) + v(x) \)</td>
-        <td class="formula-col">\( f'(x) = u'(x) + v'(x) \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = u(x) + v(x) \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = u'(x) + v'(x) \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-basic">Básica</div><br><span class="rule-name">Subtração</span></td>
-        <td class="formula-col">\( f(x) = u(x) - v(x) \)</td>
-        <td class="formula-col">\( f'(x) = u'(x) - v'(x) \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = u(x) - v(x) \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = u'(x) - v'(x) \)</td>
       </tr>
 
       <!-- PRODUTO / QUOCIENTE -->
@@ -303,14 +365,14 @@
 
       <tr>
         <td><div class="rule-badge badge-product">Produto</div><br><span class="rule-name">Regra do Produto</span></td>
-        <td class="formula-col">\( f(x) = u(x) \cdot v(x) \)</td>
-        <td class="formula-col">\( f'(x) = u'v + uv' \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = u(x) \cdot v(x) \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = u'v + uv' \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-product">Quociente</div><br><span class="rule-name">Regra do Quociente</span></td>
-        <td class="formula-col">\( f(x) = \dfrac{U}{V} \)</td>
-        <td class="formula-col">\( f'(x) = \dfrac{U'V - UV'}{V^2} \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \dfrac{U}{V} \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \dfrac{U'V - UV'}{V^2} \)</td>
       </tr>
 
       <!-- CADEIA / POTÊNCIA GERAL -->
@@ -318,14 +380,14 @@
 
       <tr>
         <td><div class="rule-badge badge-chain">Cadeia</div><br><span class="rule-name">Regra da Cadeia</span></td>
-        <td class="formula-col">\( F(x) = f(g(x)) \)</td>
-        <td class="formula-col">\( F'(x) = f'(g(x)) \cdot g'(x) \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( F(x) = f(g(x)) \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( F'(x) = f'(g(x)) \cdot g'(x) \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-chain">Cadeia</div><br><span class="rule-name">Potência p/ qualquer função</span></td>
-        <td class="formula-col">\( y = [g(x)]^n \)</td>
-        <td class="formula-col">\( \dfrac{dy}{dx} = n[g(x)]^{n-1} \cdot g'(x) \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( y = [g(x)]^n \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( \dfrac{dy}{dx} = n[g(x)]^{n-1} \cdot g'(x) \)</td>
       </tr>
 
       <!-- TRIGONOMÉTRICAS -->
@@ -333,38 +395,38 @@
 
       <tr>
         <td><div class="rule-badge badge-trig">Trig</div><br><span class="rule-name">Seno</span></td>
-        <td class="formula-col">\( f(x) = \operatorname{sen}\,x \)</td>
-        <td class="formula-col">\( f'(x) = \cos x \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \operatorname{sen}\,x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \cos x \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-trig">Trig</div><br><span class="rule-name">Cosseno</span></td>
-        <td class="formula-col">\( f(x) = \cos x \)</td>
-        <td class="formula-col">\( f'(x) = -\operatorname{sen}\,x \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \cos x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = -\operatorname{sen}\,x \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-trig">Trig</div><br><span class="rule-name">Tangente</span></td>
-        <td class="formula-col">\( f(x) = \operatorname{tg}\,x \)</td>
-        <td class="formula-col">\( f'(x) = \sec^2 x \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \operatorname{tg}\,x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \sec^2 x \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-trig">Trig</div><br><span class="rule-name">Cossecante</span></td>
-        <td class="formula-col">\( f(x) = \operatorname{cossec}\,x \)</td>
-        <td class="formula-col">\( f'(x) = -\operatorname{cossec}\,x\,\operatorname{cotg}\,x \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \operatorname{cossec}\,x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = -\operatorname{cossec}\,x\,\operatorname{cotg}\,x \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-trig">Trig</div><br><span class="rule-name">Secante</span></td>
-        <td class="formula-col">\( f(x) = \sec x \)</td>
-        <td class="formula-col">\( f'(x) = \sec x\,\operatorname{tg}\,x \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \sec x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \sec x\,\operatorname{tg}\,x \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-trig">Trig</div><br><span class="rule-name">Cotangente</span></td>
-        <td class="formula-col">\( f(x) = \operatorname{cotg}\,x \)</td>
-        <td class="formula-col">\( f'(x) = -\operatorname{cossec}^2 x \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \operatorname{cotg}\,x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = -\operatorname{cossec}^2 x \)</td>
       </tr>
 
       <!-- EXPONENCIAL -->
@@ -372,14 +434,14 @@
 
       <tr>
         <td><div class="rule-badge badge-exp">Exp</div><br><span class="rule-name">Exponencial (base a)</span></td>
-        <td class="formula-col">\( f(x) = a^u \)</td>
-        <td class="formula-col">\( f'(x) = a^u \cdot \ln(a) \cdot u' \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = a^u \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = a^u \cdot \ln(a) \cdot u' \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-exp">Exp</div><br><span class="rule-name">Exponencial natural (base e)</span></td>
-        <td class="formula-col">\( f(x) = e^u \)</td>
-        <td class="formula-col">\( f'(x) = e^u \cdot u' \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = e^u \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = e^u \cdot u' \)</td>
       </tr>
 
       <!-- LOGARITMICAS -->
@@ -387,26 +449,26 @@
 
       <tr>
         <td><div class="rule-badge badge-log">Log</div><br><span class="rule-name">Logaritmo (base a)</span></td>
-        <td class="formula-col">\( f(x) = \log_a x \)</td>
-        <td class="formula-col">\( f'(x) = \dfrac{1}{x} \cdot \log_a e \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \log_a x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \dfrac{1}{x} \cdot \log_a e \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-log">Log</div><br><span class="rule-name">Log (base a) com u = g(x)</span></td>
-        <td class="formula-col">\( f(x) = \log_a u \)</td>
-        <td class="formula-col">\( f'(x) = \dfrac{u'}{u} \cdot \log_a e \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \log_a u \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \dfrac{u'}{u} \cdot \log_a e \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-log">Log</div><br><span class="rule-name">Logaritmo natural</span></td>
-        <td class="formula-col">\( f(x) = \ln x \)</td>
-        <td class="formula-col">\( f'(x) = \dfrac{1}{x} \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \ln x \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \dfrac{1}{x} \)</td>
       </tr>
 
       <tr>
         <td><div class="rule-badge badge-log">Log</div><br><span class="rule-name">Ln com u = g(x)</span></td>
-        <td class="formula-col">\( f(x) = \ln u \)</td>
-        <td class="formula-col">\( f'(x) = \dfrac{u'}{u} \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( f(x) = \ln u \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( f'(x) = \dfrac{u'}{u} \)</td>
       </tr>
 
       <!-- L'HOPITAL -->
@@ -414,8 +476,8 @@
 
       <tr>
         <td><div class="rule-badge badge-hopital">L'Hôpital</div><br><span class="rule-name">Indeterminação 0/0 ou ∞/∞</span></td>
-        <td class="formula-col">\( \lim_{x \to a} \dfrac{f(x)}{g(x)} \)</td>
-        <td class="formula-col">\( = \lim_{x \to a} \dfrac{f'(x)}{g'(x)} \)</td>
+        <td class="formula-col" data-label="Função F(x)">\( \lim_{x \to a} \dfrac{f(x)}{g(x)} \)</td>
+        <td class="formula-col" data-label="Derivada F'(x)">\( = \lim_{x \to a} \dfrac{f'(x)}{g'(x)} \)</td>
       </tr>
 
     </tbody>
